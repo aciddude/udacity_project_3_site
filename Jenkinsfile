@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage ('SayHello') {
+        stage ('Say Hello - Build init') {
             steps {
                 
                 sh 'echo "Hello World - David Walton"'
