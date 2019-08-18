@@ -15,7 +15,7 @@ pipeline {
         stage ('Upload to AWS') {
             steps {
                 
-                withAWS(credentials:'IDofSystemCredentials') {
+                withAWS(credentials:'jenkins-pipeline-aws') {
                     // do something
                     s3Upload(bucket:"udacity-project-3-site", path:'/', includePathPattern:'**/*', workingDir:'dist', excludePathPattern:'**/Jenkinsfile')
                 }
