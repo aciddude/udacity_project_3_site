@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage ('Build') {
+        stage ('SayHello') {
             steps {
                 
                 sh 'echo "Hello World - David Walton"'
@@ -12,6 +12,16 @@ pipeline {
                 '''
             }
         }
+        stage ('Upload to AWS') {
+            steps {
+                
+                withAWS(credentials:'IDofSystemCredentials') {
+                    // do something
+                    s3Upload(bucket:"udacity-project-3-site", path:'/', includePathPattern:'**/*', workingDir:'dist', excludePathPattern:'**/Jenkinsfile')
+                }
+
+            }
+        } 
     }
 }
 
