@@ -12,6 +12,11 @@ pipeline {
                 '''
             }
         }
+        stage ('Lint HTML') {
+            steps {
+                sh "tidy -q -e index.html"
+            }
+        }
         stage ('Upload to AWS') {
             steps {
                 
@@ -20,7 +25,7 @@ pipeline {
                     s3Upload(bucket:"udacity-project-3-site", file:'index.html')
                 }
             }
-        } 
+        }        
     }
 }
 
